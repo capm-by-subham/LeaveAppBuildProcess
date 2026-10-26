@@ -1,0 +1,6 @@
+ID;employeeId;year;leaveType;totalAllocated;expired;used;pendingApproval
+3f6c2a91-7d4e-4b8a-9c1f-5e2d8a7b4c10;INT01185;2026;Casual Leave;12;0;4;0
+a8b1d4e7-2c9f-4e3a-8b6d-1f7e9c0a2d34;INT01185;2026;Sick Leave;10;0;2;0
+c5e9f2a3-6b1d-4f8c-a7e2-9d3b0c4e6f58;INT01185;2026;Earned Leave;18;3;5;0
+71d0b3c6-e8a4-4c2f-b9d1-6a5e2f8c0b72;INT01185;2026;Compensatory Off;4;1;1;0
+e2a7c9f4-1b5d-4a6e-9f3c-8d0b7e1a5c96;INT01185;2026;Loss of Pay;0;0;0;0

@@ -5,16 +5,23 @@
   "dependencies": {
     "@cap-js/hana": "^3",
     "@sap/cds": "^10",
+    "@sap/cds-compiler": "^7.2.1",
     "@sap/xssec": "^4"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^3",
-    "@sap/cds-dk": "^10",
-    "cds-plugin-ui5": "^0.17.0"
+    "@sap/cds-dk": "^10.2.0",
+    "cds-plugin-ui5": "^0.17.0",
+    "rimraf": "^5.0.5",
+    "mbt": "^1.2.49"
   },
   "scripts": {
     "start": "cds-serve",
-    "watch-leave_approval": "cds watch --open leaveapproval/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-leave_approval": "cds watch --open leaveapproval/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-leave_application": "cds watch --open leaveapplication/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "undeploy": "cf undeploy leave --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
   },
   "cds": {
     "requires": {
