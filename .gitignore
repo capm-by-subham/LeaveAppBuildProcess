@@ -2,8 +2,10 @@ node_modules/
 target/
 _out/
 gen/
-app/leave_approval/dist
-
+dist/	
+app/*/dist/	
+app/**/dist/
+resources/
 .cdsrc-private.json
 default-*.json
 *.sqlite

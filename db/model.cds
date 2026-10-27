@@ -7,6 +7,7 @@ entity Leave : cuid {
     fromDate  : Date;
     toDate    : Date;
     EmpID     : String(100);
+    ApplyDate : Date;
     leaveType : String(100);
     status    : String enum {
         Approve = 'A';

@@ -1,1 +1,43 @@
-/* Enter your custom styles here */
+/* ===== Compact look for Home view (scoped to .leaveCompact) ===== */
+
+/* Card header: less padding, smaller title + icon */
+.leaveCompact .sapFCardHeader {
+    padding: 0.375rem 0.75rem !important;
+}
+.leaveCompact .sapFCardTitle {
+    font-size: 0.875rem !important;
+}
+.leaveCompact .sapFCardHeader .sapFAvatar {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    font-size: 0.75rem !important;
+}
+
+/* Panel inside card: no extra padding */
+.leaveCompact .sapMPanelContent {
+    padding: 0 !important;
+}
+
+/* Table rows: tighter cells */
+.leaveCompact .sapMListTblCell {
+    padding-top: 0.125rem !important;
+    padding-bottom: 0.125rem !important;
+}
+
+/* Form (ColumnLayout): smaller gaps between fields and containers */
+.leaveCompact .sapUiFormCLContainer {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+}
+.leaveCompact .sapUiFormCLElement {
+    padding-top: 0.125rem !important;
+    padding-bottom: 0 !important;
+}
+.leaveCompact .sapUiFormCL {
+    padding-bottom: 0.25rem !important;
+}
+
+/* Gap between cards */
+.leaveCompact .sapFCard.sapUiTinyMarginBottom {
+    margin-bottom: 0.375rem !important;
+}

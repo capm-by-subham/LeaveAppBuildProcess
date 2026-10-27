@@ -1,0 +1,54 @@
+<mvc:View
+    controllerName="leaveapplication.controller.LeaveReport"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Page
+        title="{i18n>title}"
+        titleAlignment="Start"
+        class="sapUiResponsiveContentPadding">
+        <headerContent>
+            <Button text="Add Leave Application"
+                type="Emphasized"
+                press=".onAddLeave" />
+        </headerContent>
+        <Table id="idLeaveReport"
+            items="{
+        path: '/leave',
+        sorter: { path: 'ApplyDate', descending: true }
+    }"
+            growing="true" alternateRowColors="true" noDataText="No leave found">
+            <columns>
+                <Column width="20%">
+                    <Text text="Emp ID" />
+                </Column>
+                <Column hAlign="Center">
+                    <Text text="Apply Date" />
+                </Column>
+                <Column hAlign="Center">
+                    <Text text="Status" />
+                </Column>
+                <Column hAlign="Center">
+                    <Text text="From" />
+                </Column>
+                <Column hAlign="Center">
+                    <Text text="To" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <ObjectIdentifier title="{EmpID}" />
+                        <ObjectIdentifier title="{ApplyDate}" />
+                        <ObjectNumber number="{statusText}"
+                            state="{= ${status} === 'P'? 'Information': ${status} === 'A'? 'Success': 'Error'}" />
+                        <ObjectIdentifier title="{fromDate}" />
+                        <ObjectIdentifier title="{toDate}" />
+
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Page>
+</mvc:View>

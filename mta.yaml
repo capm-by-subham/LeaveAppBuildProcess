@@ -94,8 +94,7 @@ modules:
         - npm run build:cf
         - npm ci
         - npm run build
-      supported-platforms:
-        []
+      supported-platforms: []
   - name: leave-destinations
     type: com.sap.application.content
     requires:
@@ -136,8 +135,7 @@ modules:
       commands:
         - npm install
         - npm run build:cf
-      supported-platforms:
-        []
+      supported-platforms: []
 
   - name: leaveleave_application
     type: html5
@@ -148,8 +146,7 @@ modules:
       commands:
         - npm ci
         - npm run build
-      supported-platforms:
-        []
+      supported-platforms: []
 resources:
   - name: leave-auth
     type: org.cloudfoundry.managed-service

@@ -6,7 +6,17 @@ service LeaveService {
     entity leave            as
         projection on db.Leave {
             *,
-            status @readonly
+            status @readonly,
+            case
+                status
+                when 'A'
+                     then 'Approved'
+                when 'P'
+                     then 'Pending'
+                when 'D'
+                     then 'Declined'
+                else 'Unknow'
+            end as statusText : String(10)
         };
 
     @readonly
@@ -16,6 +26,7 @@ service LeaveService {
                       empID: String(20),
                       fromDate: Date,
                       toDate: Date,
+                      postDate: Date,
                       reason: String(500)) returns String(100);
 
     action approveLeave(ID: UUID)          returns String(10);

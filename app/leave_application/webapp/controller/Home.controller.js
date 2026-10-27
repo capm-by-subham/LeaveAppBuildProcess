@@ -37,10 +37,12 @@ sap.ui.define([
             this.model.bindList("/LeaveAllocations");
 
             this.getView().byId("idLeaveApplyForm").setModel(this.oLeaveModel, "Leave");
-            this.getView().byId("idDatendReason").setModel(this.oLeaveModel, "Leave");
+            this.getView().byId("idDateAndReason").setModel(this.oLeaveModel, "Leave");
             this.getView().byId("idApproval").setModel(this.oLeaveModel, "Leave");
+
+            this.byId("idFromDate").setMinDate(new Date());
         },
-        async onSave() {
+        async onApplyLeave() {
             const { LeaveRequest, dateReason, approval } = this.oLeaveModel.getData();
             if (
                 LeaveRequest.series &&
@@ -67,15 +69,29 @@ sap.ui.define([
                 .setParameter("empID", LeaveRequest.employeeId)
                 .setParameter("fromDate", dateReason.from)
                 .setParameter("toDate", dateReason.to)
-                .setParameter("reason", dateReason.reason);
+                .setParameter("reason", dateReason.reason)
+                .setParameter("postDate", approval.postDate);
 
             try {
-                await oAction.invoke();                         // execute() on UI5 < 1.123
+                await oAction.invoke();
                 const sResult = oAction.getBoundContext().getObject().value;
                 MessageBox.show(sResult);
+                if (sResult === "Leave Request Appled");
+                this.byId("idLeaveAllocation").getBinding("items")?.refresh();
+
+                setTimeout(() => { this.onNavBack() }, 2000)
             } catch (oError) {
                 MessageBox.error(oError.message);
             }
+        },
+        onNavBack() {
+            this.getOwnerComponent().getRouter().navTo("LeaveReport", null, null, true);
+        },
+        onCancel() {
+            this.getOwnerComponent().getRouter().navTo("LeaveReport", null, null, true);
+        },
+        onPickFromDate(oEvent) {
+            this.byId("idToDate").setMinDate(new Date(oEvent.mParameters.newValue));
         }
     })
 });

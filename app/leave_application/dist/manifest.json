@@ -114,10 +114,17 @@
 			},
 			"routes": [
 				{
-					"name": "RouteHome",
-					"pattern": ":?query:",
+					"name": "AddLeave",
+					"pattern": "addLeave",
 					"target": [
 						"TargetHome"
+					]
+				},
+				{
+					"name": "LeaveReport",
+					"pattern": "",
+					"target": [
+						"TargetLeaveReport"
 					]
 				}
 			],
@@ -125,6 +132,10 @@
 				"TargetHome": {
 					"id": "Home",
 					"name": "Home"
+				},
+				"TargetLeaveReport": {
+					"id": "LeaveReport",
+					"name": "LeaveReport"
 				}
 			}
 		},

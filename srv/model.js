@@ -64,6 +64,7 @@ export class LeaveService extends cds.ApplicationService {
           empID,
           fromDate,
           toDate,
+          postDate,
           reason } = req.data;
 
         const availLeave = Number((await SELECT.one.from(LeaveAllocations)
@@ -83,7 +84,8 @@ export class LeaveService extends cds.ApplicationService {
           fromDate: fromDate,
           toDate: toDate,
           leaveType: leaveType,
-          EmpID: empID
+          EmpID: empID,
+          ApplyDate: postDate
         };
 
         await INSERT.into(leave).entries(leaveObject);

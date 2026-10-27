@@ -1,4 +1,6 @@
 {
+  "welcomeFile": "/leaveapplication/index.html",
+  "authenticationMethod": "route",
   "routes": [
     {
       "source": "^/(.*)$",

@@ -5,267 +5,280 @@
     controllerName="leaveapplication.controller.Home"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    xmlns:l="sap.ui.layout"
     xmlns:core="sap.ui.core"
+    class="sapUiSizeCompact leaveCompact"
 >
     <Page id="page"
         title="{i18n>title}"
-        titleAlignment="Start">
-        <headerContent>
-            <Button text="Save"
-                press=".onSave" />
-        </headerContent>
-        <FlexBox>
-            <VBox width="100%">
-                <f:Card>
-                    <f:content>
-                        <Panel expandable="true" headerText="Allocated Leaves" width="100%">
-                            <content>
-                                <Table id="idLeaveAllocation"
-                                    items="{/LeaveAllocations}"
-                                    growing="true"
-                                    noDataText="No leave allocations found">
-                                    <columns>
-                                        <Column>
-                                            <Text text="Leave Type" />
-                                        </Column>
-                                        <Column hAlign="End">
-                                            <Text text="Total Allocated Leaves" />
-                                        </Column>
-                                        <Column hAlign="End"
-                                            minScreenWidth="Tablet"
-                                            demandPopin="true">
-                                            <Text text="Expired Leaves" />
-                                        </Column>
-                                        <Column hAlign="End"
-                                            minScreenWidth="Tablet"
-                                            demandPopin="true">
-                                            <Text text="Used Leaves" />
-                                        </Column>
-                                        <Column hAlign="End"
-                                            minScreenWidth="Tablet"
-                                            demandPopin="true">
-                                            <Text text="Leaves Pending Approval" />
-                                        </Column>
-                                        <Column hAlign="End">
-                                            <Text text="Available Leaves" />
-                                        </Column>
-                                    </columns>
-                                    <items>
-                                        <ColumnListItem>
-                                            <cells>
-                                                <Text text="{leaveType}" />
-                                                <ObjectNumber number="{totalAllocated}" />
-                                                <ObjectNumber number="{expired}" />
-                                                <ObjectNumber number="{used}" />
-                                                <ObjectNumber number="{pendingApproval}"
-                                                    state="Warning" />
-                                                <ObjectNumber number="{available}"
-                                                    state="Success"
-                                                    emphasized="true" />
-                                            </cells>
-                                        </ColumnListItem>
-                                    </items>
-                                </Table>
-                            </content>
-                        </Panel>
-                    </f:content>
-                </f:Card>
-                <f:Card>
-                    <f:content>
-                        <form:Form id="idLeaveApplyForm" editable="true">
-                            <form:layout>
-                                <form:ColumnLayout columnsXL="3"
-                                    columnsL="3"
-                                    columnsM="2"
-                                    labelCellsLarge="12"
-                                    emptyCellsLarge="0" />
-                            </form:layout>
-                            <form:formContainers>
+        titleAlignment="Start"
+        showFooter="true"
+        showNavButton="true"
+        navButtonPress=".onNavBack"
+        class="sapUiNoContentPadding">
 
-                                <form:FormContainer>
-                                    <form:formElements>
-                                        <form:FormElement label="Series">
-                                            <form:fields>
-                                                <Select selectedKey="{Leave>/LeaveRequest/series}"
-                                                    required="true">
-                                                    <core:Item key="HR-LAP-.YYYY.-"
-                                                        text="HR-LAP-.YYYY.-" />
-                                                </Select>
-                                            </form:fields>
-                                        </form:FormElement>
-                                        <form:FormElement label="Employee">
-                                            <form:fields>
-                                                <Input value="{Leave>/LeaveRequest/employeeId}"
-                                                    required="true" />
-                                            </form:fields>
-                                        </form:FormElement>
-                                        <form:FormElement label="Employee Name">
-                                            <form:fields>
-                                                <Input value="{Leave>/LeaveRequest/employeeName}"
-                                                    editable="false" />
-                                            </form:fields>
-                                        </form:FormElement>
-                                    </form:formElements>
-                                </form:FormContainer>
+        <VBox width="100%" class="sapUiTinyMargin">
 
-                                <form:FormContainer>
-                                    <form:formElements>
-                                        <form:FormElement label="Leave Type">
-                                            <form:fields>
-                                                <Select
-                                                    selectedKey="{Leave>/LeaveRequest/leaveType}"
-                                                    items="{/LeaveAllocations}"
-                                                    forceSelection="false"
-                                                    required="true">
-                                                    <core:Item key="{leaveType}" text="{leaveType}" />
-                                                </Select>
-                                            </form:fields>
-                                        </form:FormElement>
-                                        <form:FormElement label="Company">
-                                            <form:fields>
-                                                <Input value="{Leave>/LeaveRequest/company}"
-                                                    required="true" />
-                                            </form:fields>
-                                        </form:FormElement>
-                                        <form:FormElement label="Reporting Manager">
-                                            <form:fields>
-                                                <Input
-                                                    value="{Leave>/LeaveRequest/reportingManager}"
-                                                    editable="false" />
-                                            </form:fields>
-                                        </form:FormElement>
-                                    </form:formElements>
-                                </form:FormContainer>
+            <f:Card width="100%" class="sapUiTinyMarginBottom">
+                <f:content>
+                    <Panel expandable="true"
+                        expanded="true"
+                        headerText="Allocated Leaves"
+                        backgroundDesign="Transparent"
+                        class="sapUiNoContentPadding"
+                        width="100%">
+                        <content>
+                            <Table id="idLeaveAllocation"
+                                items="{/LeaveAllocations}"
+                                growing="true"
+                                alternateRowColors="true"
+                                noDataText="No leave allocations found">
+                                <columns>
+                                    <Column width="20%">
+                                        <Text text="Leave Type" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="Total Allocated" />
+                                    </Column>
+                                    <Column hAlign="Center" minScreenWidth="Tablet"
+                                        demandPopin="true">
+                                        <Text text="Expired" />
+                                    </Column>
+                                    <Column hAlign="Center" minScreenWidth="Tablet"
+                                        demandPopin="true">
+                                        <Text text="Used" />
+                                    </Column>
+                                    <Column hAlign="Center" minScreenWidth="Tablet"
+                                        demandPopin="true">
+                                        <Text text="Pending Approval" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="Available" />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem>
+                                        <cells>
+                                            <Text text="{leaveType}" />
+                                            <ObjectNumber number="{totalAllocated}" />
+                                            <ObjectNumber number="{expired}" state="Error" />
+                                            <ObjectNumber number="{used}" />
+                                            <ObjectNumber number="{pendingApproval}" state="Warning" />
+                                            <ObjectNumber number="{available}" state="Success"
+                                                emphasized="true" />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </content>
+                    </Panel>
+                </f:content>
+            </f:Card>
 
-                                <form:FormContainer>
-                                    <form:formElements>
-                                        <form:FormElement label="Department">
-                                            <form:fields>
-                                                <Input value="{Leave>/LeaveRequest/department}"
-                                                    editable="false" />
-                                            </form:fields>
-                                        </form:FormElement>
-                                        <form:FormElement label="Sub Department">
-                                            <form:fields>
-                                                <Input value="{Leave>/LeaveRequest/subDepartment}"
-                                                    editable="false" />
-                                            </form:fields>
-                                        </form:FormElement>
-                                    </form:formElements>
-                                </form:FormContainer>
+            <f:Card width="100%" class="sapUiTinyMarginBottom">
+                <f:header>
+                    <cards:Header title="Leave Details" iconSrc="sap-icon://employee" />
+                </f:header>
+                <f:content>
+                    <form:Form id="idLeaveApplyForm" editable="true" width="100%">
+                        <form:layout>
+                            <form:ColumnLayout columnsXL="3" columnsL="3" columnsM="2"
+                                labelCellsLarge="4" emptyCellsLarge="0" />
+                        </form:layout>
+                        <form:formContainers>
 
-                            </form:formContainers>
-                        </form:Form>
-                    </f:content>
-                </f:Card>
-                <f:Card>
-                    <f:header>
-                        <cards:Header title="Dates &amp; Reason" />
-                    </f:header>
-                    <f:content>
-                        <form:Form id="idDatendReason" editable="true">
-                            <form:layout>
-                                <form:ColumnLayout columnsXL="2" columnsL="2" columnsM="2"
-                                    labelCellsLarge="12" emptyCellsLarge="0" />
-                            </form:layout>
-                            <form:formContainers>
+                            <form:FormContainer>
+                                <form:formElements>
+                                    <form:FormElement label="Series">
+                                        <form:fields>
+                                            <Select selectedKey="{Leave>/LeaveRequest/series}"
+                                                width="100%" required="true">
+                                                <core:Item key="HR-LAP-.YYYY.-"
+                                                    text="HR-LAP-.YYYY.-" />
+                                            </Select>
+                                        </form:fields>
+                                    </form:FormElement>
+                                    <form:FormElement label="Employee">
+                                        <form:fields>
+                                            <Input value="{Leave>/LeaveRequest/employeeId}"
+                                                placeholder="Enter Employee ID" required="true" />
+                                        </form:fields>
+                                    </form:FormElement>
+                                    <form:FormElement label="Employee Name">
+                                        <form:fields>
+                                            <Input value="{Leave>/LeaveRequest/employeeName}"
+                                                editable="false" />
+                                        </form:fields>
+                                    </form:FormElement>
+                                </form:formElements>
+                            </form:FormContainer>
 
-                                <form:FormContainer>
-                                    <form:formElements>
-                                        <form:FormElement label="From Date">
-                                            <form:fields>
-                                                <DatePicker valueFormat="yyyy-MM-dd"
-                                                    displayFormat="dd-MM-yyyy"
-                                                    value="{Leave>/dateReason/from}"
-                                                    required="true" />
-                                            </form:fields>
-                                        </form:FormElement>
-                                        <form:FormElement label="To Date">
-                                            <form:fields>
-                                                <DatePicker valueFormat="yyyy-MM-dd"
-                                                    displayFormat="dd-MM-yyyy"
-                                                    value="{Leave>/dateReason/to}"
-                                                    required="true" />
-                                            </form:fields>
-                                        </form:FormElement>
-                                        <form:FormElement>
-                                            <form:fields>
-                                                <CheckBox text="Half Day"
-                                                    selected="{Leave>/dateReason/halfDay}" />
-                                            </form:fields>
-                                        </form:FormElement>
-                                    </form:formElements>
-                                </form:FormContainer>
+                            <form:FormContainer>
+                                <form:formElements>
+                                    <form:FormElement label="Leave Type">
+                                        <form:fields>
+                                            <Select selectedKey="{Leave>/LeaveRequest/leaveType}"
+                                                items="{/LeaveAllocations}"
+                                                forceSelection="false"
+                                                width="100%" required="true">
+                                                <core:Item key="{leaveType}" text="{leaveType}" />
+                                            </Select>
+                                        </form:fields>
+                                    </form:FormElement>
+                                    <form:FormElement label="Company">
+                                        <form:fields>
+                                            <Input value="{Leave>/LeaveRequest/company}"
+                                                placeholder="Enter Company" required="true" />
+                                        </form:fields>
+                                    </form:FormElement>
+                                    <form:FormElement label="Reporting Manager">
+                                        <form:fields>
+                                            <Input value="{Leave>/LeaveRequest/reportingManager}"
+                                                editable="false" />
+                                        </form:fields>
+                                    </form:FormElement>
+                                </form:formElements>
+                            </form:FormContainer>
 
-                                <form:FormContainer>
-                                    <form:formElements>
-                                        <form:FormElement label="Reason">
+                            <form:FormContainer>
+                                <form:formElements>
+                                    <form:FormElement label="Department">
+                                        <form:fields>
+                                            <Input value="{Leave>/LeaveRequest/department}"
+                                                editable="false" />
+                                        </form:fields>
+                                    </form:FormElement>
+                                    <form:FormElement label="Sub Department">
+                                        <form:fields>
+                                            <Input value="{Leave>/LeaveRequest/subDepartment}"
+                                                editable="false" />
+                                        </form:fields>
+                                    </form:FormElement>
+                                </form:formElements>
+                            </form:FormContainer>
+
+                        </form:formContainers>
+                    </form:Form>
+                </f:content>
+            </f:Card>
+
+            <f:Card width="100%" class="sapUiTinyMarginBottom">
+                <f:header>
+                    <cards:Header title="Dates &amp; Reason" iconSrc="sap-icon://calendar" />
+                </f:header>
+                <f:content>
+                    <form:Form id="idDateAndReason" editable="true" width="100%">
+                        <form:layout>
+                            <form:ColumnLayout columnsXL="2" columnsL="2" columnsM="2"
+                                labelCellsLarge="3" emptyCellsLarge="0" />
+                        </form:layout>
+                        <form:formContainers>
+
+                            <form:FormContainer>
+                                <form:formElements>
+                                    <form:FormElement label="From Date">
+                                        <form:fields>
+                                            <DatePicker id="idFromDate" valueFormat="yyyy-MM-dd"
+                                                displayFormat="dd-MM-yyyy" change=".onPickFromDate"
+                                                value="{Leave>/dateReason/from}" required="true" />
+                                        </form:fields>
+                                    </form:FormElement>
+                                    <form:FormElement label="To Date">
+                                        <form:fields>
+                                            <DatePicker id="idToDate" valueFormat="yyyy-MM-dd"
+                                                displayFormat="dd-MM-yyyy"
+                                                value="{Leave>/dateReason/to}" required="true" />
+                                        </form:fields>
+                                    </form:FormElement>
+                                    <form:FormElement label="">
+                                        <form:fields>
+                                            <CheckBox text="Half Day"
+                                                selected="{Leave>/dateReason/halfDay}" />
+                                        </form:fields>
+                                    </form:FormElement>
+                                </form:formElements>
+                            </form:FormContainer>
+
+                            <form:FormContainer>
+                                <form:formElements>
+                                    <form:FormElement label="Reason">
+                                        <form:fields>
                                             <TextArea value="{Leave>/dateReason/reason}"
-                                                required="true"></TextArea>
-                                        </form:FormElement>
-                                    </form:formElements>
-                                </form:FormContainer>
+                                                rows="3" width="100%" growing="true"
+                                                growingMaxLines="6"
+                                                placeholder="Enter reason for leave"
+                                                required="true" />
+                                        </form:fields>
+                                    </form:FormElement>
+                                </form:formElements>
+                            </form:FormContainer>
 
+                        </form:formContainers>
+                    </form:Form>
+                </f:content>
+            </f:Card>
 
-                            </form:formContainers>
-                        </form:Form>
-                    </f:content>
-                </f:Card>
-                <f:Card>
-                    <f:header>
-                        <cards:Header title="Approval" />
-                    </f:header>
-                    <f:content>
-                        <form:Form id="idApproval" editable="false">
-                            <form:layout>
-                                <form:ColumnLayout columnsXL="2" columnsL="2" columnsM="2"
-                                    labelCellsLarge="12" emptyCellsLarge="0" />
-                            </form:layout>
-                            <form:formContainers>
+            <f:Card width="100%">
+                <f:header>
+                    <cards:Header title="Approval" iconSrc="sap-icon://approvals" />
+                </f:header>
+                <f:content>
+                    <form:Form id="idApproval" editable="true" width="100%">
+                        <form:layout>
+                            <form:ColumnLayout columnsXL="2" columnsL="2" columnsM="2"
+                                labelCellsLarge="3" emptyCellsLarge="0" />
+                        </form:layout>
+                        <form:formContainers>
 
-                                <form:FormContainer>
-                                    <form:formElements>
-                                        <form:FormElement label="Leave Approver">
-                                            <form:fields>
-                                                <Input
-                                                    value="{Leave>/approval/from}"
-                                                    required="true" editable="false" />
-                                            </form:fields>
-                                        </form:FormElement>
-                                        <form:FormElement label="Leave Approver Name">
-                                            <form:fields>
-                                                <Input
-                                                    value="{Leave>/approval/name}"
-                                                    required="true" editable="false" />
-                                            </form:fields>
-                                        </form:FormElement>
-                                        <form:FormElement>
-                                            <form:fields>
-                                                <CheckBox text="Follow via Email"
-                                                    selected="{Leave>/approval/viaEmail}" />
-                                            </form:fields>
-                                        </form:FormElement>
-                                    </form:formElements>
-                                </form:FormContainer>
+                            <form:FormContainer>
+                                <form:formElements>
+                                    <form:FormElement label="Leave Approver">
+                                        <form:fields>
+                                            <Input value="{Leave>/approval/from}" editable="false" />
+                                        </form:fields>
+                                    </form:FormElement>
+                                    <form:FormElement label="Approver Name">
+                                        <form:fields>
+                                            <Input value="{Leave>/approval/name}" editable="false" />
+                                        </form:fields>
+                                    </form:FormElement>
+                                    <form:FormElement label="">
+                                        <form:fields>
+                                            <CheckBox text="Follow via Email"
+                                                selected="{Leave>/approval/viaEmail}" />
+                                        </form:fields>
+                                    </form:FormElement>
+                                </form:formElements>
+                            </form:FormContainer>
 
-                                <form:FormContainer>
-                                    <form:formElements>
-                                        <form:FormElement label="Posting Date">
+                            <form:FormContainer>
+                                <form:formElements>
+                                    <form:FormElement label="Posting Date">
+                                        <form:fields>
                                             <DatePicker valueFormat="yyyy-MM-dd"
                                                 displayFormat="dd-MM-yyyy"
-                                                value="{Leave>/approval/postDate}"
-                                                required="true" />
-                                        </form:FormElement>
-                                    </form:formElements>
-                                </form:FormContainer>
+                                                value="{Leave>/approval/postDate}" required="true" />
+                                        </form:fields>
+                                    </form:FormElement>
+                                </form:formElements>
+                            </form:FormContainer>
 
+                        </form:formContainers>
+                    </form:Form>
+                </f:content>
+            </f:Card>
 
-                            </form:formContainers>
-                        </form:Form>
-                    </f:content>
-                </f:Card>
-            </VBox>
-        </FlexBox>
+        </VBox>
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer />
+                <Button text="Apply Leave"
+                    icon="sap-icon://paper-plane"
+                    type="Emphasized"
+                    press=".onApplyLeave" />
+                <Button text="Cancel"
+                    type="Transparent"
+                    press=".onCancel" />
+            </OverflowToolbar>
+        </footer>
     </Page>
 </mvc:View>
