@@ -3,8 +3,6 @@ target/
 _out/
 gen/
 dist/	
-app/*/dist/	
-app/**/dist/
 resources/
 .cdsrc-private.json
 default-*.json
@@ -23,3 +21,5 @@ mta_archives/
 
 # auto generated wildcard
 db/.env
+
+leave/app/leave_application/dist
