@@ -256,7 +256,8 @@
                                         <form:fields>
                                             <DatePicker valueFormat="yyyy-MM-dd"
                                                 displayFormat="dd-MM-yyyy"
-                                                value="{Leave>/approval/postDate}" required="true" />
+                                                value="{Leave>/approval/postDate}" required="true"
+                                                editable="false" />
                                         </form:fields>
                                     </form:FormElement>
                                 </form:formElements>

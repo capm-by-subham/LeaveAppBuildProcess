@@ -7,34 +7,14 @@
     <Page class="sapUiResponsiveContentPadding">
         <customHeader>
             <Bar>
-                <contentLeft>
-                    <SearchField id="fEmpId"
-                        width="10rem"
-                        placeholder="Emp ID"
-                        search=".onFilter"
-                        liveChange=".onFilter" />
-                    <MultiComboBox id="fStatus"
-                        width="12rem"
-                        placeholder="Status"
-                        selectionFinish=".onFilter">
-                        <core:Item key="A" text="Approved" />
-                        <core:Item key="P" text="Pending" />
-                        <core:Item key="D" text="Declined" />
-                    </MultiComboBox>
-                    <MultiComboBox id="fLeaveType"
-                        width="12rem"
-                        placeholder="Leave Type"
-                        selectionFinish=".onFilter">
-                        <core:Item key="Casual Leave" text="Casual Leave" />
-                        <core:Item key="Sick Leave" text="Sick Leave" />
-                        <core:Item key="Earned Leave" text="Earned Leave" />
-                        <core:Item key="Compensatory Off" text="Compensatory Off" />
-                        <core:Item key="Loss of Pay" text="Loss of Pay" />
-                    </MultiComboBox>
-                    <Button icon="sap-icon://refresh" iconFirst="true" press=".onRefresh"></Button>
-                </contentLeft>
                 <contentRight>
+                    <Button icon="sap-icon://refresh"
+                        type="Transparent"
+                        tooltip="Refresh"
+                        press=".onRefresh"
+                        class="sapUiTinyMarginEnd" />
                     <Button text="Add Leave Application"
+                        icon="sap-icon://add"
                         type="Emphasized"
                         press=".onAddLeave" />
                 </contentRight>
@@ -47,17 +27,65 @@
     }"
             growing="true" alternateRowColors="true" noDataText="No leave found">
             <columns>
-                <Column width="20%">
-                    <Text text="Emp ID" />
+
+                <Column width="12rem">
+                    <header>
+                        <HBox alignItems="Center" wrap="NoWrap">
+                            <Label text="Emp ID" labelFor="fEmpId" class="sapUiTinyMarginEnd" />
+                            <SearchField id="fEmpId"
+                                width="7rem"
+                                placeholder="ID"
+                                showSearchButton="false"
+                                search=".onFilter"
+                                liveChange=".onFilter" />
+                        </HBox>
+                    </header>
                 </Column>
-                <Column hAlign="Center">
-                    <Text text="Apply Date" />
+
+
+                <Column hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+                    <header>
+                        <Label text="Apply Date" />
+                    </header>
                 </Column>
-                <Column hAlign="Center">
-                    <Text text="Status" />
+
+
+                <Column hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+                    <header>
+                        <HBox alignItems="Center" justifyContent="Center" wrap="NoWrap">
+                            <Label text="Status" labelFor="fStatus" class="sapUiTinyMarginEnd" />
+                            <MultiComboBox id="fStatus"
+                                width="10rem"
+                                placeholder="All"
+                                showSelectAll="true"
+                                selectionFinish=".onFilter">
+                                <core:Item key="A" text="Approved" />
+                                <core:Item key="P" text="Pending" />
+                                <core:Item key="D" text="Declined" />
+                            </MultiComboBox>
+                        </HBox>
+                    </header>
                 </Column>
-                <Column hAlign="Center">
-                    <Text text="Leave Type" />
+
+
+                <Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+                    <header>
+                        <HBox alignItems="Center" justifyContent="Center" wrap="NoWrap">
+                            <Label text="Leave Type" labelFor="fLeaveType"
+                                class="sapUiTinyMarginEnd" />
+                            <MultiComboBox id="fLeaveType"
+                                width="11rem"
+                                placeholder="All"
+                                showSelectAll="true"
+                                selectionFinish=".onFilter">
+                                <core:Item key="Casual Leave" text="Casual Leave" />
+                                <core:Item key="Sick Leave" text="Sick Leave" />
+                                <core:Item key="Earned Leave" text="Earned Leave" />
+                                <core:Item key="Compensatory Off" text="Compensatory Off" />
+                                <core:Item key="Loss of Pay" text="Loss of Pay" />
+                            </MultiComboBox>
+                        </HBox>
+                    </header>
                 </Column>
             </columns>
             <items>
