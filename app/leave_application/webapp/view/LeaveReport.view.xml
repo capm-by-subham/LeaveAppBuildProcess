@@ -4,15 +4,42 @@
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
 >
-    <Page
-        title="{i18n>title}"
-        titleAlignment="Start"
-        class="sapUiResponsiveContentPadding">
-        <headerContent>
-            <Button text="Add Leave Application"
-                type="Emphasized"
-                press=".onAddLeave" />
-        </headerContent>
+    <Page class="sapUiResponsiveContentPadding">
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <SearchField id="fEmpId"
+                        width="10rem"
+                        placeholder="Emp ID"
+                        search=".onFilter"
+                        liveChange=".onFilter" />
+                    <MultiComboBox id="fStatus"
+                        width="12rem"
+                        placeholder="Status"
+                        selectionFinish=".onFilter">
+                        <core:Item key="A" text="Approved" />
+                        <core:Item key="P" text="Pending" />
+                        <core:Item key="D" text="Declined" />
+                    </MultiComboBox>
+                    <MultiComboBox id="fLeaveType"
+                        width="12rem"
+                        placeholder="Leave Type"
+                        selectionFinish=".onFilter">
+                        <core:Item key="Casual Leave" text="Casual Leave" />
+                        <core:Item key="Sick Leave" text="Sick Leave" />
+                        <core:Item key="Earned Leave" text="Earned Leave" />
+                        <core:Item key="Compensatory Off" text="Compensatory Off" />
+                        <core:Item key="Loss of Pay" text="Loss of Pay" />
+                    </MultiComboBox>
+                    <Button icon="sap-icon://refresh" iconFirst="true" press=".onRefresh"></Button>
+                </contentLeft>
+                <contentRight>
+                    <Button text="Add Leave Application"
+                        type="Emphasized"
+                        press=".onAddLeave" />
+                </contentRight>
+            </Bar>
+        </customHeader>
         <Table id="idLeaveReport"
             items="{
         path: '/leave',
@@ -30,10 +57,7 @@
                     <Text text="Status" />
                 </Column>
                 <Column hAlign="Center">
-                    <Text text="From" />
-                </Column>
-                <Column hAlign="Center">
-                    <Text text="To" />
+                    <Text text="Leave Type" />
                 </Column>
             </columns>
             <items>
@@ -41,11 +65,10 @@
                     <cells>
                         <ObjectIdentifier title="{EmpID}" />
                         <ObjectIdentifier title="{ApplyDate}" />
-                        <ObjectNumber number="{statusText}"
+                        <ObjectNumber
+                            number="{= ${statusText} + (${status} === 'D' ? ' (' + ${rejectReason}  + ')' :'')}"
                             state="{= ${status} === 'P'? 'Information': ${status} === 'A'? 'Success': 'Error'}" />
-                        <ObjectIdentifier title="{fromDate}" />
-                        <ObjectIdentifier title="{toDate}" />
-
+                        <ObjectIdentifier title="{leaveType}" />
                     </cells>
                 </ColumnListItem>
             </items>

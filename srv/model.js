@@ -44,8 +44,8 @@ export class LeaveService extends cds.ApplicationService {
     })
     this.on('rejectLeave', async (req) => {
       try {
-        const { ID } = req.data;
-        await UPDATE(leave, ID).set({ status: 'D' });
+        const { ID, rejectReason } = req.data;
+        await UPDATE(leave, ID).set({ status: 'D', rejectReason: rejectReason });
         const leaveDetails = await SELECT.one.from(leave).where({ ID });
 
         await UPDATE(LeaveAllocations)

@@ -3,17 +3,18 @@ namespace db;
 using {cuid} from '@sap/cds/common';
 
 entity Leave : cuid {
-    reason    : String(100);
-    fromDate  : Date;
-    toDate    : Date;
-    EmpID     : String(100);
-    ApplyDate : Date;
-    leaveType : String(100);
-    status    : String enum {
+    reason       : String(100);
+    fromDate     : Date;
+    toDate       : Date;
+    EmpID        : String(100);
+    ApplyDate    : Date;
+    leaveType    : String(100);
+    status       : String enum {
         Approve = 'A';
         Pending = 'P';
         Declined = 'D';
     } default 'P';
+    rejectReason : String(200) default '';
 }
 
 entity LeaveAllocations : cuid {

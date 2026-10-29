@@ -21,7 +21,7 @@
             <f:Card width="100%" class="sapUiTinyMarginBottom">
                 <f:content>
                     <Panel expandable="true"
-                        expanded="true"
+                        expanded="false"
                         headerText="Allocated Leaves"
                         backgroundDesign="Transparent"
                         class="sapUiNoContentPadding"

@@ -27,8 +27,8 @@ service LeaveService {
                       fromDate: Date,
                       toDate: Date,
                       postDate: Date,
-                      reason: String(500)) returns String(100);
+                      reason: String(500))                  returns String(100);
 
-    action approveLeave(ID: UUID)          returns String(10);
-    action rejectLeave(ID: UUID)           returns String(10);
+    action approveLeave(ID: UUID)                           returns String(10);
+    action rejectLeave(ID: UUID, rejectReason: String(200)) returns String(10);
 }

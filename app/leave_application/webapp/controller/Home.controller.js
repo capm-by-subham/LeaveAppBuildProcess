@@ -60,6 +60,7 @@ sap.ui.define([
             }
         },
         async requestLeave() {
+            this.getView().setBusy(true);
             const { LeaveRequest, dateReason, approval } = this.oLeaveModel.getData();
             const oModel = this.model;
             const oAction = oModel.bindContext("/applyLeave(...)");
@@ -74,13 +75,15 @@ sap.ui.define([
 
             try {
                 await oAction.invoke();
+                this.getView().setBusy(false);
                 const sResult = oAction.getBoundContext().getObject().value;
                 MessageBox.show(sResult);
-                if (sResult === "Leave Request Appled");
-                this.byId("idLeaveAllocation").getBinding("items")?.refresh();
-
-                setTimeout(() => { this.onNavBack() }, 2000)
+                if (sResult === "Leave Request Appled") {
+                    this.byId("idLeaveAllocation").getBinding("items")?.refresh();
+                    setTimeout(() => { this.onNavBack() }, 2000)
+                }
             } catch (oError) {
+                this.getView().setBusy(false);
                 MessageBox.error(oError.message);
             }
         },
