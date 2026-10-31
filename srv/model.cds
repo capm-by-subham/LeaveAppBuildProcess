@@ -1,8 +1,17 @@
 using {db} from '../db/model';
 
 
+// @requires: 'MobileIntegration'
+
 service LeaveService {
     @odata.draft.enabled
+
+    // @restrict: [{
+    //     grant: 'READ',
+    //     to   : 'MobileIntegration',
+    //     where: 'EmpID = $user.InfraID'
+    // }]
+    @requires: 'MobileIntegration'
     entity leave            as
         projection on db.Leave {
             *,
@@ -20,6 +29,7 @@ service LeaveService {
         };
 
     @readonly
+    // @requires: 'tech_user'
     entity LeaveAllocations as projection on db.LeaveAllocations;
 
     action applyLeave(leaveType: String(100),

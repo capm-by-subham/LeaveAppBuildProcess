@@ -1,5 +1,39 @@
 {
-  "scopes": [],
-  "attributes": [],
-  "role-templates": []
+  "xsappname": "leave-1d086f71trial-dev",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.MobileIntegration",
+      "description": "Read access"
+    },
+    {
+      "name": "$XSAPPNAME.tech_user",
+      "description": "for tech User"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "MobileIntegration",
+      "description": "Can read data",
+      "scope-references": [
+        "$XSAPPNAME.MobileIntegration"
+      ]
+    },
+    {
+      "name": "techUser",
+      "description": "for tech user",
+      "scope-references": [
+        "$XSAPPNAME.tech_user"
+      ]
+    }
+  ],
+  "authorities": [
+    "$XSAPPNAME.tech_user"
+  ],
+  "oauth2-configuration": {
+    "token-validity": 3600,
+    "redirect-uris": [
+      "https://*.cfapps.*.hana.ondemand.com/**"
+    ]
+  }
 }
